@@ -1,0 +1,70 @@
+from fastmcp import FastMCP
+
+from app.tools import (
+    get_cwe_tool,
+    get_exploit_tool,
+    get_package_status_tool,
+    get_version_status_tool,
+    get_vulnerability_tool,
+)
+
+mcp = FastMCP("Secure Chain MCP Tool")
+
+TOOL_SPECS = [
+    (
+        "get_package_status",
+        get_package_status_tool,
+        """
+        Use this to check if a package exists and get its status in the dependency graph.
+        Input:
+            node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
+            package_name: Name of the package.
+        """,
+        ["request"]
+    ),
+    (
+        "get_version_status",
+        get_version_status_tool,
+        """
+        Use this to get the status of a specific version of a package in the dependency graph.
+        Input:
+            node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
+            package_name: Name of the package.
+            version_name: Name of the version.
+        """,
+        ["request"]
+    ),
+    (
+        "get_vulnerability",
+        get_vulnerability_tool,
+        """
+        Use this to get the information of a vulnerability by the ID.
+        Input:
+            id: The ID of the vulnerability to look for.
+        """,
+        []
+    ),
+        (
+        "get_exploit",
+        get_exploit_tool,
+        """
+        Use this to get the information of an exploit by the ID.
+        Input:
+            id: The ID of the exploit to look for.
+        """,
+        []
+    ),
+        (
+        "get_cwe",
+        get_cwe_tool,
+        """
+        Use this to get the information of a CWE by the ID.
+        Input:
+            id: The ID of the CWE to look for.
+        """,
+        []
+    ),
+]
+
+for name, func, description, exclude_args in TOOL_SPECS:
+    mcp.tool(name=name, description=description, exclude_args=exclude_args)(func)
