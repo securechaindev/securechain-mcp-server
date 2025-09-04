@@ -1,0 +1,9 @@
+fastapi==0.116.1
+uvicorn==0.35.0
+pydantic-settings==2.10.1
+aiohttp==3.12.15
+python-dotenv==1.1.1
+mcp==1.13.1
+fastmcp==2.12.2
+motor==3.7.1
+neo4j==5.28.1
