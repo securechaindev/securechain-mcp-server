@@ -1,0 +1,64 @@
+name: Publish GitHub Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  push_to_registry:
+    name: Push GitHub Release
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+
+      - name: Automated Version Bump
+        id: changelog
+        uses: Requarks/changelog-action@v1
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          tag: ${{ github.ref_name }}
+          writeToFile: false
+          excludeTypes: other
+
+      - name: Get variables
+        id: get_variables
+        run: |
+          VERSION=${GITHUB_REF/refs\/tags\//}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "IS_PRERELEASE=${{ contains(github.ref, 'dev') }}" >> $GITHUB_OUTPUT
+
+      - name: Publish release github
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          prerelease: ${{ steps.get_variables.outputs.IS_PRERELEASE }}
+          tag_name: ${{ steps.get_variables.outputs.VERSION }}
+          body: ${{ steps.changelog.outputs.changes }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GIT_TOKEN }}
+
+      - name: Build and push multi-arch image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/securechain-mcp:latest
+            ghcr.io/${{ github.repository_owner }}/securechain-mcp:${{ steps.get_variables.outputs.VERSION }}
+          provenance: true
+          sbom: true
