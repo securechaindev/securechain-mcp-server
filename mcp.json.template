@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "Secure Chain": {
+      "type": "http",
+      "url": "http://localhost:8005/mcp",
+      "headers": {
+        "X-Auth-Email": "mcp-bot@example.com", # Change in production by your personal user registered in https://securechain.dev/
+        "X-Auth-Pass": "supersecre3T*"         # Change in production by your personal user registered in https://securechain.dev/
+      }
+    }
+  }
+}
