@@ -143,6 +143,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+mcp-env/
+.vscode/
 
 # Spyder project settings
 .spyderproject
