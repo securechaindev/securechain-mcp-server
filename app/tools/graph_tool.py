@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Literal
 
 from mcp.types import TextContent
 
@@ -6,6 +6,7 @@ from app.exceptions import PackageNotFoundException, VersionNotFoundException
 from app.utils import (
     as_text_content,
     get_auth_from_request,
+    get_current_headers,
     get_package_status,
     get_version_status,
     session_pool,
@@ -21,10 +22,10 @@ async def get_package_status_tool(
         "RubyGemsPackage",
         "NuGetPackage"
     ],
-    package_name: str,
-    request: Any = None
+    package_name: str
 ) -> list[TextContent]:
-    email, password = get_auth_from_request(request)
+    headers = await get_current_headers()
+    email, password = await get_auth_from_request(headers)
     sm = await session_pool.get(email, password)
     try:
         out = await get_package_status(sm, node_type, package_name)
@@ -45,10 +46,10 @@ async def get_version_status_tool(
         "NuGetPackage"
     ],
     package_name: str,
-    version_name: str,
-    request: Any = None
+    version_name: str
 ) -> list[TextContent]:
-    email, password = get_auth_from_request(request)
+    headers = await get_current_headers()
+    email, password = await get_auth_from_request(headers)
     sm = await session_pool.get(email, password)
     try:
         out = await get_version_status(sm, node_type, package_name, version_name)

@@ -19,8 +19,7 @@ TOOL_SPECS = [
         Input:
             node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
             package_name: Name of the package.
-        """,
-        ["request"]
+        """
     ),
     (
         "get_version_status",
@@ -31,8 +30,7 @@ TOOL_SPECS = [
             node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
             package_name: Name of the package.
             version_name: Name of the version.
-        """,
-        ["request"]
+        """
     ),
     (
         "get_vulnerability",
@@ -41,8 +39,7 @@ TOOL_SPECS = [
         Use this to get the information of a vulnerability by the ID.
         Input:
             id: The ID of the vulnerability to look for.
-        """,
-        []
+        """
     ),
         (
         "get_exploit",
@@ -51,8 +48,7 @@ TOOL_SPECS = [
         Use this to get the information of an exploit by the ID.
         Input:
             id: The ID of the exploit to look for.
-        """,
-        []
+        """
     ),
         (
         "get_cwe",
@@ -61,10 +57,9 @@ TOOL_SPECS = [
         Use this to get the information of a CWE by the ID.
         Input:
             id: The ID of the CWE to look for.
-        """,
-        []
+        """
     ),
 ]
 
-for name, func, description, exclude_args in TOOL_SPECS:
-    mcp.tool(name=name, description=description, exclude_args=exclude_args)(func)
+for name, func, description in TOOL_SPECS:
+    mcp.tool(name=name, description=description)(func)
