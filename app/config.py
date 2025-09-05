@@ -14,8 +14,7 @@ class MCPSettings(BaseSettings):
     AUTH_REFRESH_URL: str = Field("/auth/refresh", alias="AUTH_REFRESH_URL")
     AUTH_EMAIL: str = Field("mcp-bot@example.com", alias="AUTH_EMAIL")
     AUTH_PASS: str = Field("supersecre3T*", alias="AUTH_PASS")
-    REQUEST_TIMEOUT: float = Field(60, alias="REQUEST_TIMEOUT")
-    SAFETY_MARGIN: int = Field(30, alias="SAFETY_MARGIN")
+    REQUEST_TIMEOUT: int = Field(60, alias="REQUEST_TIMEOUT")
 
     model_config = SettingsConfigDict(
         env_file=".env",
