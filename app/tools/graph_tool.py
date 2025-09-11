@@ -7,8 +7,8 @@ from app.utils import (
     as_text_content,
     get_auth_from_request,
     get_current_headers,
-    get_package_status,
     get_package_scc,
+    get_package_status,
     get_version_status,
     session_pool,
 )
