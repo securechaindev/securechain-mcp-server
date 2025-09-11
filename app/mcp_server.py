@@ -4,6 +4,7 @@ from app.tools import (
     get_cwe_tool,
     get_exploit_tool,
     get_package_status_tool,
+    get_package_transitive_information_tool,
     get_version_status_tool,
     get_vulnerability_tool,
 )
@@ -16,6 +17,16 @@ TOOL_SPECS = [
         get_package_status_tool,
         """
         Use this to check if a package exists and get its status in the dependency graph.
+        Input:
+            node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
+            package_name: Name of the package.
+        """
+    ),
+    (
+        "get_package_transitive_information",
+        get_package_transitive_information_tool,
+        """
+        Use this to check the transitive part of a package in the dependency graph of the software supply chain.
         Input:
             node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
             package_name: Name of the package.
