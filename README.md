@@ -75,7 +75,7 @@ Inside the folder `.vscode/` add the file `mcp.json` with this template:
 ```json
 {
   "servers": {
-    "Secure Chain": {
+    "Secure Chain MCP Server": {
       "type": "http",
       "url": "http://localhost:8005/mcp",
       "headers": {

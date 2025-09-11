@@ -35,7 +35,7 @@ async def get_package_status(session_manager: SessionManager, node_type: str, pa
         raise
 
 
-async def get_package_transitive_information(session_manager: SessionManager, node_type: str, package_name: str) -> dict[str, Any]:
+async def get_package_scc(session_manager: SessionManager, node_type: str, package_name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
     url = f"{mcp_settings.BACKEND_URL}/depex/operation/package/package_info"
