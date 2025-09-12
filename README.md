@@ -113,6 +113,11 @@ The project uses Python 3.13 and the dependencies are listed in `requirements.tx
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
+### Future Works
+
+New future works that can be developed:
+- Implement templates to return the information in a more semantic/textual way.
+
 ## License
 
 [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.html)
