@@ -3,6 +3,7 @@ from .exploit_tool import get_exploit_tool, get_exploits_by_vulnerability_tool
 from .graph_tool import (
     get_package_ssc_tool,
     get_package_status_tool,
+    get_version_ssc_tool,
     get_version_status_tool,
 )
 from .vex_tool import get_vexs_tool
@@ -19,6 +20,7 @@ __all__ = [
     "get_exploits_by_vulnerability_tool",
     "get_package_ssc_tool",
     "get_package_status_tool",
+    "get_version_ssc_tool",
     "get_version_status_tool",
     "get_vexs_tool",
     "get_vulnerabilities_by_cwe_tool",

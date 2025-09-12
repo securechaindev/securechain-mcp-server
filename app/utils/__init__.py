@@ -6,7 +6,13 @@ from .auth import (
     session_pool,
     set_current_headers,
 )
-from .logics import create_vex, get_package_ssc, get_package_status, get_version_status
+from .logics import (
+    create_vex,
+    get_package_ssc,
+    get_package_status,
+    get_version_ssc,
+    get_version_status,
+)
 from .others import as_text_content, json_encoder
 
 __all__ = [
@@ -17,6 +23,7 @@ __all__ = [
     "get_current_headers",
     "get_package_ssc",
     "get_package_status",
+    "get_version_ssc",
     "get_version_status",
     "json_encoder",
     "reset_current_headers",

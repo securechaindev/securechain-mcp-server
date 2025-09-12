@@ -7,6 +7,7 @@ from app.tools import (
     get_exploits_by_vulnerability_tool,
     get_package_ssc_tool,
     get_package_status_tool,
+    get_version_ssc_tool,
     get_version_status_tool,
     get_vexs_tool,
     get_vulnerabilities_by_cwe_tool,
@@ -42,6 +43,17 @@ TOOL_SPECS = [
         get_version_status_tool,
         """
         Use this to get the status of a specific version of a package in the dependency graph.
+        Input:
+            node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
+            package_name: Name of the package.
+            version_name: Name of the version.
+        """
+    ),
+    (
+        "get_version_ssc",
+        get_version_ssc_tool,
+        """
+        Use this to check the direct and transitive software supply chain of a version in the dependency graph of the overall software supply chain.
         Input:
             node_type: Type of node (PyPIPackage, NPMPackage, MavenPackage, CargoPackage, RubyGemsPackage, NuGetPackage).
             package_name: Name of the package.
