@@ -9,6 +9,7 @@ from app.tools import (
     get_package_status_tool,
     get_version_status_tool,
     get_vulnerability_tool,
+    get_vulnerabilities_by_cwe_tool
 )
 
 mcp = FastMCP("Secure Chain MCP Tool")
@@ -55,6 +56,15 @@ TOOL_SPECS = [
         """
     ),
     (
+        "get_vulnerabilities_by_cwe",
+        get_vulnerabilities_by_cwe_tool,
+        """
+        Use this to get the information of a vulnerabilities related to a CWE by the CWE-ID.
+        Input:
+            cwe_id: The ID of the CWE to look for.
+        """
+    ),
+    (
         "get_exploit",
         get_exploit_tool,
         """
@@ -67,7 +77,7 @@ TOOL_SPECS = [
         "get_exploits_by_vulnerability_id",
         get_exploits_by_vulnerability_tool,
         """
-        Use this to get the information of exploits by a vulnerability ID.
+        Use this to get the information of exploits related to a vulnerability ID.
         Input:
             vulnerability_id: The ID of the vulnerability to look for associated exploits.
         """
@@ -85,9 +95,9 @@ TOOL_SPECS = [
         "get_cwes_by_vulnerability_id",
         get_cwes_by_vulnerability_tool,
         """
-        Use this to get the information of CWEs by a vulnerability ID.
+        Use this to get the information of CWEs related to a vulnerability ID.
         Input:
-            vulnerability_id: The ID of the vulnerability to look for associated exploits.
+            vulnerability_id: The ID of the vulnerability to look for associated cwes.
         """
     ),
 ]
