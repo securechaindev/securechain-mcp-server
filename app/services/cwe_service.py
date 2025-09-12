@@ -1,9 +1,7 @@
 from typing import Any
 
-from app.exceptions import (
-    CWENotFoundException,
-    CWEsNotFoundException
-)
+from app.exceptions import CWENotFoundException, CWEsNotFoundException
+
 from .dbs import get_collection
 
 

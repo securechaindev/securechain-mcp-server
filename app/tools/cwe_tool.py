@@ -1,13 +1,7 @@
 from mcp.types import TextContent
 
-from app.exceptions import (
-    CWENotFoundException,
-    CWEsNotFoundException
-)
-from app.services import (
-    read_cwe_by_id,
-    read_cwes_by_vulnerability_id
-)
+from app.exceptions import CWENotFoundException, CWEsNotFoundException
+from app.services import read_cwe_by_id, read_cwes_by_vulnerability_id
 from app.utils import as_text_content, json_encoder
 
 

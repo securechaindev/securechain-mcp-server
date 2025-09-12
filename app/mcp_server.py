@@ -8,9 +8,9 @@ from app.tools import (
     get_package_ssc_tool,
     get_package_status_tool,
     get_version_status_tool,
-    get_vulnerability_tool,
     get_vulnerabilities_by_cwe_tool,
-    get_vulnerabilities_by_exploit_tool
+    get_vulnerabilities_by_exploit_tool,
+    get_vulnerability_tool,
 )
 
 mcp = FastMCP("Secure Chain MCP Tool")
