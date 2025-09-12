@@ -24,6 +24,8 @@ def get_collection(collection_name: str) -> AsyncIOMotorCollection:
     securechain_db: AsyncIOMotorDatabase = client.get_database("securechain")
     vulnerabilities_db: AsyncIOMotorDatabase = client.get_database("vulnerabilities")
     match collection_name:
+        case "tixs":
+            return securechain_db.get_collection(collection_name)
         case "vexs":
             return securechain_db.get_collection(collection_name)
         case "vulnerabilities":

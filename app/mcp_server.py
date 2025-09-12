@@ -119,6 +119,7 @@ TOOL_SPECS = [
         Input:
             owner: The owner of the repository.
             name: The name of the repository.
+            sbom_name: The name of the SBOM file.
         """
     )
 ]
