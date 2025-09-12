@@ -6,7 +6,7 @@ services:
       dockerfile: dev/Dockerfile
     volumes:
       - ../app:/app
-    env_file: 
+    env_file:
       - ../.env
     ports:
       - "8005:8000"
