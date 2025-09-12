@@ -32,9 +32,9 @@ async def get_package_status_tool(
         out = await get_package_status(sm, node_type, package_name)
         return await as_text_content(out)
     except PackageNotFoundException:
-        return [TextContent(type="text", text=f"package_not_found: {node_type}:{package_name}")]
+        return [TextContent(type="text", text=f"Package {package_name} of type {node_type} not Found.")]
     except Exception as e:
-        return [TextContent(type="text", text=f"error: {e!s}")]
+        return [TextContent(type="text", text=f"Error: {e!s}")]
 
 
 async def get_package_ssc_tool(
@@ -55,9 +55,9 @@ async def get_package_ssc_tool(
         out = await get_package_ssc(sm, node_type, package_name)
         return await as_text_content(out)
     except PackageNotFoundException:
-        return [TextContent(type="text", text=f"package_not_found: {node_type}:{package_name}")]
+        return [TextContent(type="text", text=f"Package {package_name} of type {node_type} not Found.")]
     except Exception as e:
-        return [TextContent(type="text", text=f"error: {e!s}")]
+        return [TextContent(type="text", text=f"Error: {e!s}")]
 
 
 async def get_version_status_tool(
@@ -79,6 +79,6 @@ async def get_version_status_tool(
         out = await get_version_status(sm, node_type, package_name, version_name)
         return await as_text_content(out)
     except VersionNotFoundException:
-        return [TextContent(type="text", text=f"version_not_found: {node_type}:{package_name}:{version_name}")]
+        return [TextContent(type="text", text=f"Version {version_name} related to package {package_name} of type {node_type} not Found.")]
     except Exception as e:
-        return [TextContent(type="text", text=f"error: {e!s}")]
+        return [TextContent(type="text", text=f"Error: {e!s}")]
