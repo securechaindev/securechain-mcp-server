@@ -13,7 +13,8 @@ from .graph_tool import (
 )
 from .vulnerability_tool import (
     get_vulnerability_tool,
-    get_vulnerabilities_by_cwe_tool
+    get_vulnerabilities_by_cwe_tool,
+    get_vulnerabilities_by_exploit_tool
 )
 
 __all__ = [
@@ -25,5 +26,6 @@ __all__ = [
     "get_package_status_tool",
     "get_version_status_tool",
     "get_vulnerability_tool",
-    "get_vulnerabilities_by_cwe_tool"
+    "get_vulnerabilities_by_cwe_tool",
+    "get_vulnerabilities_by_exploit_tool"
 ]

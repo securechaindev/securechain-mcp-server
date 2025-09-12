@@ -1,5 +1,9 @@
 from typing import Any
 
+from app.exceptions import (
+    CWENotFoundException,
+    CWEsNotFoundException
+)
 from .dbs import get_collection
 
 
@@ -10,7 +14,9 @@ async def read_cwe_by_id(cwe_id: str) -> dict[str, Any]:
             "id": cwe_id
         }
     )
-    return result if result else {}
+    if not result:
+        raise CWENotFoundException()
+    return result
 
 
 async def read_cwes_by_vulnerability_id(vulnerability_id: str) -> list[dict[str, Any]]:
@@ -21,4 +27,6 @@ async def read_cwes_by_vulnerability_id(vulnerability_id: str) -> list[dict[str,
         }
     )
     results = await cursor.to_list(length=None)
+    if not results:
+        raise CWEsNotFoundException()
     return results
