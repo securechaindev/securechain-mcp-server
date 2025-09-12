@@ -8,6 +8,7 @@ from app.tools import (
     get_package_ssc_tool,
     get_package_status_tool,
     get_version_status_tool,
+    get_vexs_tool,
     get_vulnerabilities_by_cwe_tool,
     get_vulnerabilities_by_exploit_tool,
     get_vulnerability_tool,
@@ -110,6 +111,16 @@ TOOL_SPECS = [
             vulnerability_id: The ID of the vulnerability to look for associated cwes.
         """
     ),
+    (
+        "get_vexs",
+        get_vexs_tool,
+        """
+        Use this to get the VEXs for a given repository owner and name.
+        Input:
+            owner: The owner of the repository.
+            name: The name of the repository.
+        """
+    )
 ]
 
 for name, func, description in TOOL_SPECS:

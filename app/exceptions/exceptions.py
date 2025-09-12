@@ -44,3 +44,8 @@ class CWENotFoundException(HTTPException):
 class CWEsNotFoundException(HTTPException):
     def __init__(self):
         super().__init__(status_code=404, detail="The CWEs have not been found.")
+
+
+class VEXsNotFoundException(HTTPException):
+    def __init__(self):
+        super().__init__(status_code=404, detail="The VEXs have not been found.")

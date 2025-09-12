@@ -6,6 +6,7 @@ from .exceptions import (
     ExploitsNotFoundException,
     PackageNotFoundException,
     VersionNotFoundException,
+    VEXsNotFoundException,
     VulnerabilitiesNotFoundException,
     VulnerabilityNotFoundException,
 )
@@ -17,6 +18,7 @@ __all__ = [
     "ExploitNotFoundException",
     "ExploitsNotFoundException",
     "PackageNotFoundException",
+    "VEXsNotFoundException",
     "VersionNotFoundException",
     "VulnerabilitiesNotFoundException",
     "VulnerabilityNotFoundException"
