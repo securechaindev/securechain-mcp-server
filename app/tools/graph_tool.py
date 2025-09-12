@@ -7,7 +7,7 @@ from app.utils import (
     as_text_content,
     get_auth_from_request,
     get_current_headers,
-    get_package_scc,
+    get_package_ssc,
     get_package_status,
     get_version_status,
     session_pool,
@@ -37,7 +37,7 @@ async def get_package_status_tool(
         return [TextContent(type="text", text=f"error: {e!s}")]
 
 
-async def get_package_scc_tool(
+async def get_package_ssc_tool(
     node_type: Literal[
         "PyPIPackage",
         "NPMPackage",
@@ -52,7 +52,7 @@ async def get_package_scc_tool(
     email, password = await get_auth_from_request(headers)
     sm = await session_pool.get(email, password)
     try:
-        out = await get_package_scc(sm, node_type, package_name)
+        out = await get_package_ssc(sm, node_type, package_name)
         return await as_text_content(out)
     except PackageNotFoundException:
         return [TextContent(type="text", text=f"package_not_found: {node_type}:{package_name}")]

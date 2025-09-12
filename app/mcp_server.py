@@ -2,9 +2,10 @@ from fastmcp import FastMCP
 
 from app.tools import (
     get_cwe_tool,
+    get_cwes_by_vulnerability_tool,
     get_exploit_tool,
-    get_exploits_by_vuln_id,
-    get_package_scc_tool,
+    get_exploits_by_vulnerability_tool,
+    get_package_ssc_tool,
     get_package_status_tool,
     get_version_status_tool,
     get_vulnerability_tool,
@@ -24,8 +25,8 @@ TOOL_SPECS = [
         """
     ),
     (
-        "get_package_scc",
-        get_package_scc_tool,
+        "get_package_ssc",
+        get_package_ssc_tool,
         """
         Use this to check the direct and transitive software supply chain of a package in the dependency graph of the overall software supply chain.
         Input:
@@ -63,8 +64,8 @@ TOOL_SPECS = [
         """
     ),
     (
-        "get_exploits_by_vuln_id",
-        get_exploits_by_vuln_id,
+        "get_exploits_by_vulnerability_id",
+        get_exploits_by_vulnerability_tool,
         """
         Use this to get the information of exploits by a vulnerability ID.
         Input:
@@ -78,6 +79,15 @@ TOOL_SPECS = [
         Use this to get the information of a CWE by the ID.
         Input:
             cwe_id: The ID of the CWE to look for.
+        """
+    ),
+    (
+        "get_cwes_by_vulnerability_id",
+        get_cwes_by_vulnerability_tool,
+        """
+        Use this to get the information of CWEs by a vulnerability ID.
+        Input:
+            vulnerability_id: The ID of the vulnerability to look for associated exploits.
         """
     ),
 ]
