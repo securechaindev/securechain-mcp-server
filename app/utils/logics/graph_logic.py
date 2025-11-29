@@ -2,8 +2,8 @@ from typing import Any
 
 from aiohttp import ClientResponseError
 
-from app.settings import settings
 from app.exceptions import PackageNotFoundException
+from app.settings import settings
 from app.utils.auth import SessionManager
 
 

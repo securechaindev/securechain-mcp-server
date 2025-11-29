@@ -1,8 +1,7 @@
 from collections.abc import Mapping
 from contextvars import ContextVar
-from typing import Optional
 
-_current_headers: ContextVar[Optional[Mapping[str, str]]] = ContextVar("current_headers", default=None)
+_current_headers: ContextVar[Mapping[str, str] | None] = ContextVar("current_headers", default=None)
 
 async def set_current_headers(headers: Mapping[str, str]):
     return _current_headers.set(headers)
