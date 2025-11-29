@@ -1,11 +1,9 @@
 from functools import lru_cache
 
-from motor.motor_asyncio import (
-    AsyncIOMotorClient,
-    AsyncIOMotorCollection,
-    AsyncIOMotorDatabase,
-)
 from neo4j import AsyncDriver, AsyncGraphDatabase
+from pymongo import AsyncMongoClient
+from pymongo.asynchronous.collection import AsyncCollection
+from pymongo.asynchronous.database import AsyncDatabase
 
 from app.settings import settings
 
@@ -19,10 +17,10 @@ def get_graph_db_driver() -> AsyncDriver:
 
 
 @lru_cache
-def get_collection(collection_name: str) -> AsyncIOMotorCollection:
-    client: AsyncIOMotorClient = AsyncIOMotorClient(settings.VULN_DB_URI)
-    securechain_db: AsyncIOMotorDatabase = client.get_database("securechain")
-    vulnerabilities_db: AsyncIOMotorDatabase = client.get_database("vulnerabilities")
+def get_collection(collection_name: str) -> AsyncCollection:
+    client: AsyncMongoClient = AsyncMongoClient(settings.VULN_DB_URI)
+    securechain_db: AsyncDatabase = client.get_database("securechain")
+    vulnerabilities_db: AsyncDatabase = client.get_database("vulnerabilities")
     match collection_name:
         case "tixs":
             return securechain_db.get_collection(collection_name)
