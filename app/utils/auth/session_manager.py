@@ -3,7 +3,7 @@ from typing import Any
 
 from aiohttp import ClientResponse, ClientSession, ClientTimeout
 
-from app.config import mcp_settings
+from app.settings import settings
 
 ACCESS_COOKIE_NAME = "access_token"
 REFRESH_COOKIE_NAME = "refresh_token"
@@ -22,7 +22,7 @@ class SessionManager:
 
     async def _ensure_session(self):
         if self._session is None or self._session.closed:
-            timeout = ClientTimeout(total=mcp_settings.REQUEST_TIMEOUT)
+            timeout = ClientTimeout(total=settings.REQUEST_TIMEOUT)
             self._session = ClientSession(timeout=timeout)
 
 
@@ -41,7 +41,7 @@ class SessionManager:
     async def _login(self):
         await self._ensure_session()
         async with self._session.post(
-            f"{mcp_settings.BACKEND_URL}{mcp_settings.AUTH_LOGIN_URL}",
+            f"{settings.BACKEND_URL}{settings.AUTH_LOGIN_URL}",
             json={"email": self.email, "password": self.password},
         ) as resp:
             resp.raise_for_status()
@@ -52,7 +52,7 @@ class SessionManager:
     async def _refresh(self):
         await self._ensure_session()
         async with self._session.post(
-            f"{mcp_settings.BACKEND_URL}{mcp_settings.AUTH_REFRESH_URL}"
+            f"{settings.BACKEND_URL}{settings.AUTH_REFRESH_URL}"
         ) as resp:
             resp.raise_for_status()
             self._update_from_cookies(resp)

@@ -4,7 +4,7 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class MCPSettings(BaseSettings):
+class Settings(BaseSettings):
     GRAPH_DB_URI: str = Field("bolt://neo4j:7687", alias="GRAPH_DB_URI")
     VULN_DB_URI: str = Field('mongodb://mongoSecureChain:mongoSecureChain@mongo:27017/admin', alias="VULN_DB_URI")
     GRAPH_DB_USER: str = Field("neo4j", alias="GRAPH_DB_USER")
@@ -24,8 +24,8 @@ class MCPSettings(BaseSettings):
 
 
 @lru_cache
-def get_settings() -> MCPSettings:
-    return MCPSettings()
+def get_settings() -> Settings:
+    return Settings()
 
 
-mcp_settings: MCPSettings = get_settings()
+settings: Settings = get_settings()

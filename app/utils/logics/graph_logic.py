@@ -2,7 +2,7 @@ from typing import Any
 
 from aiohttp import ClientResponseError
 
-from app.config import mcp_settings
+from app.settings import settings
 from app.exceptions import PackageNotFoundException
 from app.utils.auth import SessionManager
 
@@ -10,7 +10,7 @@ from app.utils.auth import SessionManager
 async def get_package_status(session_manager: SessionManager, node_type: str, package_name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
-    url = f"{mcp_settings.BACKEND_URL}/depex/graph/package/status"
+    url = f"{settings.BACKEND_URL}/depex/graph/package/status"
     params = {"node_type": node_type, "package_name": package_name}
 
     async def _do_request():
@@ -38,7 +38,7 @@ async def get_package_status(session_manager: SessionManager, node_type: str, pa
 async def get_package_ssc(session_manager: SessionManager, node_type: str, package_name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
-    url = f"{mcp_settings.BACKEND_URL}/depex/operation/ssc/package_ssc_info"
+    url = f"{settings.BACKEND_URL}/depex/operation/ssc/package_ssc_info"
     body = {"node_type": node_type, "package_name": package_name, "max_depth": 2}
 
     async def _do_request():
@@ -66,7 +66,7 @@ async def get_package_ssc(session_manager: SessionManager, node_type: str, packa
 async def get_version_status(session_manager: SessionManager, node_type: str, package_name: str, version_name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
-    url = f"{mcp_settings.BACKEND_URL}/depex/graph/version/status"
+    url = f"{settings.BACKEND_URL}/depex/graph/version/status"
     params = {"node_type": node_type, "package_name": package_name, "version_name": version_name}
 
     async def _do_request():
@@ -93,7 +93,7 @@ async def get_version_status(session_manager: SessionManager, node_type: str, pa
 async def get_version_ssc(session_manager: SessionManager, node_type: str, package_name: str, version_name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
-    url = f"{mcp_settings.BACKEND_URL}/depex/operation/ssc/version_ssc_info"
+    url = f"{settings.BACKEND_URL}/depex/operation/ssc/version_ssc_info"
     body = {"node_type": node_type, "package_name": package_name, "version_name": version_name, "max_depth": 2}
 
     async def _do_request():

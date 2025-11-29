@@ -2,7 +2,7 @@ from typing import Any
 
 from aiohttp import ClientResponseError
 
-from app.config import mcp_settings
+from app.settings import settings
 from app.exceptions import PackageNotFoundException
 from app.utils.auth import SessionManager
 
@@ -10,7 +10,7 @@ from app.utils.auth import SessionManager
 async def create_vex(session_manager: SessionManager, owner: str, name: str) -> dict[str, Any]:
     await session_manager._ensure_session()
     headers = await session_manager.auth_headers()
-    url = f"{mcp_settings.BACKEND_URL}/vexgen/vex_tix/generate"
+    url = f"{settings.BACKEND_URL}/vexgen/vex_tix/generate"
     body = {"owner": owner, "name": name, "user_id": session_manager._user_id}
 
     async def _do_request():
