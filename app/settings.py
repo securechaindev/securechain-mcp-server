@@ -10,10 +10,6 @@ class Settings(BaseSettings):
     GRAPH_DB_USER: str = Field("neo4j", alias="GRAPH_DB_USER")
     GRAPH_DB_PASSWORD: str = Field("neoSecureChain", alias="GRAPH_DB_PASSWORD")
     BACKEND_URL: str = Field("http://securechain-gateway:8000", alias="BACKEND_URL")
-    AUTH_LOGIN_URL: str = Field("/auth/login", alias="AUTH_LOGIN_URL")
-    AUTH_REFRESH_URL: str = Field("/auth/refresh", alias="AUTH_REFRESH_URL")
-    AUTH_EMAIL: str = Field("mcp-bot@example.com", alias="AUTH_EMAIL")
-    AUTH_PASS: str = Field("supersecre3T*", alias="AUTH_PASS")
     REQUEST_TIMEOUT: int = Field(60, alias="REQUEST_TIMEOUT")
 
     model_config = SettingsConfigDict(

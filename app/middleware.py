@@ -1,10 +1,11 @@
-from app.utils import reset_current_headers, set_current_headers
+from app.dependencies import get_request_context
 
 
 class RequestContextMiddleware:
     def __init__(self, app, sse_path="/mcp"):
         self.app = app
         self.sse_path = sse_path
+        self.request_context = get_request_context()
 
     @staticmethod
     def _headers_to_dict(raw_headers: list[tuple[bytes, bytes]]) -> dict[str, str]:
@@ -21,8 +22,8 @@ class RequestContextMiddleware:
         if path == self.sse_path and method == "GET" and "text/event-stream" in headers.get("accept", ""):
             return await self.app(scope, receive, send)
 
-        token = await set_current_headers(headers)
+        token = self.request_context.set_headers(headers)
         try:
             return await self.app(scope, receive, send)
         finally:
-            await reset_current_headers(token)
+            self.request_context.reset_headers(token)

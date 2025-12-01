@@ -1,18 +1,11 @@
 from fastmcp import FastMCP
 
 from app.tools import (
-    get_cwe_tool,
-    get_cwes_by_vulnerability_tool,
-    get_exploit_tool,
-    get_exploits_by_vulnerability_tool,
-    get_package_ssc_tool,
-    get_package_status_tool,
-    get_version_ssc_tool,
-    get_version_status_tool,
-    get_vexs_tool,
-    get_vulnerabilities_by_cwe_tool,
-    get_vulnerabilities_by_exploit_tool,
-    get_vulnerability_tool,
+    CWETool,
+    ExploitTool,
+    GraphTool,
+    VEXTool,
+    VulnerabilityTool,
 )
 
 mcp = FastMCP("Secure Chain MCP Tool")
@@ -20,7 +13,7 @@ mcp = FastMCP("Secure Chain MCP Tool")
 TOOL_SPECS = [
     (
         "get_package_status",
-        get_package_status_tool,
+        GraphTool.get_package_status_tool,
         """
         Use this to check if a package exists and get its status in the dependency graph.
         Input:
@@ -30,7 +23,7 @@ TOOL_SPECS = [
     ),
     (
         "get_package_ssc",
-        get_package_ssc_tool,
+        GraphTool.get_package_ssc_tool,
         """
         Use this to check the direct and transitive software supply chain of a package in the dependency graph of the overall software supply chain.
         Input:
@@ -40,7 +33,7 @@ TOOL_SPECS = [
     ),
     (
         "get_version_status",
-        get_version_status_tool,
+        GraphTool.get_version_status_tool,
         """
         Use this to get the status of a specific version of a package in the dependency graph.
         Input:
@@ -51,7 +44,7 @@ TOOL_SPECS = [
     ),
     (
         "get_version_ssc",
-        get_version_ssc_tool,
+        GraphTool.get_version_ssc_tool,
         """
         Use this to check the direct and transitive software supply chain of a version in the dependency graph of the overall software supply chain.
         Input:
@@ -62,7 +55,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerability",
-        get_vulnerability_tool,
+        VulnerabilityTool.get_vulnerability_tool,
         """
         Use this to get the information of a vulnerability by the ID.
         Input:
@@ -71,7 +64,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerabilities_by_cwe",
-        get_vulnerabilities_by_cwe_tool,
+        VulnerabilityTool.get_vulnerabilities_by_cwe_tool,
         """
         Use this to get the information of a vulnerabilities related to a CWE by the CWE-ID.
         Input:
@@ -80,7 +73,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerabilities_by_exploit",
-        get_vulnerabilities_by_exploit_tool,
+        VulnerabilityTool.get_vulnerabilities_by_exploit_tool,
         """
         Use this to get the information of a vulnerabilities related to a exploit by the exploit ID.
         Input:
@@ -89,7 +82,7 @@ TOOL_SPECS = [
     ),
     (
         "get_exploit",
-        get_exploit_tool,
+        ExploitTool.get_exploit_tool,
         """
         Use this to get the information of an exploit by the ID.
         Input:
@@ -98,7 +91,7 @@ TOOL_SPECS = [
     ),
     (
         "get_exploits_by_vulnerability_id",
-        get_exploits_by_vulnerability_tool,
+        ExploitTool.get_exploits_by_vulnerability_tool,
         """
         Use this to get the information of exploits related to a vulnerability ID.
         Input:
@@ -107,7 +100,7 @@ TOOL_SPECS = [
     ),
     (
         "get_cwe",
-        get_cwe_tool,
+        CWETool.get_cwe_tool,
         """
         Use this to get the information of a CWE by the ID.
         Input:
@@ -116,7 +109,7 @@ TOOL_SPECS = [
     ),
     (
         "get_cwes_by_vulnerability_id",
-        get_cwes_by_vulnerability_tool,
+        CWETool.get_cwes_by_vulnerability_tool,
         """
         Use this to get the information of CWEs related to a vulnerability ID.
         Input:
@@ -125,7 +118,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vexs",
-        get_vexs_tool,
+        VEXTool.get_vexs_tool,
         """
         Use this to get the VEXs for a given repository owner and name.
         Input:
