@@ -2,6 +2,14 @@
 
 An MCP server that provides tools for checking the status of your software supply chain within the context of Secure Chain.
 
+### Key Features
+
+- 🔍 **Multi-ecosystem support:** Query packages from PyPI, NPM, Maven, Cargo, RubyGems, and NuGet ecosystems
+- 🛡️ **Vulnerability intelligence:** Access detailed vulnerability, exploit, and CWE information
+- 📊 **Supply chain analysis:** Explore direct and transitive dependencies in the software supply chain graph
+- 📋 **VEX support:** Retrieve Vulnerability Exploitability eXchange documents for repositories
+- ⚡ **MCP integration:** Seamlessly integrates with AI agents and LLMs via Model Context Protocol
+
 ## Development requirements
 
 1. [Docker](https://www.docker.com/) to deploy the tool.
@@ -114,24 +122,37 @@ Inside the folder `.vscode/` add the file `mcp.json` with this template:
 And then start the MCP server and begin use it with Copilot for example.
 
 ## Python Environment
-The project uses Python 3.13 and the dependencies are listed in `requirements.txt`.
+The project uses Python 3.14 and **uv** as the package manager for faster and more reliable dependency management.
 
-### Setting up the development environment
+### Setting up the development environment with uv
 
-1. **Create a virtual environment**:
+1. **Install uv** (if not already installed):
    ```bash
-   python3.13 -m venv depex-env
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
-2. **Activate the virtual environment**:
+2. **Activate the virtual environment** (uv creates it automatically):
    ```bash
-   source depex-env/bin/activate
+   uv venv
+   source .venv/bin/activate
    ```
 
-3. **Install dependencies**:
+2. **Install dependencies**:
    ```bash
-   pip install -r requirements.txt
+   uv sync
    ```
+
+## Code Quality
+```bash
+# Install linter
+uv sync --extra dev
+
+# Linting
+uv ruff check app/
+
+# Formatting
+uv ruff format app/
+```
 
 ## Contributing
 
