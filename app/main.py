@@ -15,13 +15,11 @@ DESCRIPTION = """
 The Secure Chain Model Context Protocol (MCP) server to give context about your software supply chain to any type of LLM or AI agent.
 """
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with mcp_app.lifespan(app):
         yield
     await get_session_pool().close_all()
-
 
 app = FastAPI(
     lifespan=lifespan,
@@ -41,7 +39,3 @@ app = FastAPI(
 )
 
 app.mount("/", mcp_app)
-
-@app.get("/health")
-async def health():
-    return {"detail": "healthy"}
