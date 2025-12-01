@@ -5,8 +5,8 @@ from app.settings import settings
 from app.utils import SessionManager
 
 
-class VEXLogic:
-    async def create_vex(self, session_manager: SessionManager, owner: str, name: str) -> dict[str, Any]:
+class VEXTIXLogic:
+    async def generate_vex_tix(self, session_manager: SessionManager, owner: str, name: str) -> dict[str, Any]:
         await session_manager.ensure_session()
         headers = session_manager.auth_headers()
         url = f"{settings.BACKEND_URL}/vexgen/vex_tix/generate"

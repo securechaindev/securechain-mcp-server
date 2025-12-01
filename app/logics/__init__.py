@@ -1,7 +1,7 @@
 from .graph_logic import GraphLogic
-from .vex_logic import VEXLogic
+from .vex_tix_logic import VEXTIXLogic
 
 __all__ = [
     "GraphLogic",
-    "VEXLogic",
+    "VEXTIXLogic",
 ]
