@@ -7,7 +7,7 @@ from app.dependencies import (
     get_request_context,
     get_session_pool,
     get_tix_service,
-    get_vex_logic,
+    get_vex_tix_logic,
 )
 from app.exceptions import TIXsNotFoundException
 from app.logics import VEXTIXLogic
@@ -21,7 +21,7 @@ class TIXTool:
         self.json_encoder: JSONEncoder = get_json_encoder()
         self.session_pool: SessionPool = get_session_pool()
         self.request_context: RequestContext = get_request_context()
-        self.vex_tix_logic: VEXTIXLogic = get_vex_logic()
+        self.vex_tix_logic: VEXTIXLogic = get_vex_tix_logic()
 
     async def get_tixs_tool(
         self,

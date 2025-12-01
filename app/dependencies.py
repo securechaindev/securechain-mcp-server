@@ -1,5 +1,5 @@
 from app.database import DatabaseManager
-from app.logics import GraphLogic, VEXLogic
+from app.logics import GraphLogic, VEXTIXLogic
 from app.services import (
     CWEService,
     ExploitService,
@@ -22,7 +22,7 @@ class ServiceContainer:
     session_pool: SessionPool | None = None
     request_context: RequestContext | None = None
     graph_logic: GraphLogic | None = None
-    vex_logic: VEXLogic | None = None
+    vex_tix_logic: VEXTIXLogic | None = None
 
     def __new__(cls) -> ServiceContainer:
         if cls.instance is None:
@@ -79,10 +79,10 @@ class ServiceContainer:
             self.graph_logic = GraphLogic()
         return self.graph_logic
 
-    def get_vex_logic(self) -> VEXLogic:
-        if self.vex_logic is None:
-            self.vex_logic = VEXLogic()
-        return self.vex_logic
+    def get_vex_tix_logic(self) -> VEXTIXLogic:
+        if self.vex_tix_logic is None:
+            self.vex_tix_logic = VEXTIXLogic()
+        return self.vex_tix_logic
 
 
 def get_db() -> DatabaseManager:
@@ -125,5 +125,5 @@ def get_graph_logic() -> GraphLogic:
     return ServiceContainer().get_graph_logic()
 
 
-def get_vex_logic() -> VEXLogic:
-    return ServiceContainer().get_vex_logic()
+def get_vex_tix_logic() -> VEXTIXLogic:
+    return ServiceContainer().get_vex_tix_logic()
