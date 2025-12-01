@@ -10,9 +10,8 @@ class CWEService:
 
     async def read_cwe_by_id(self, cwe_id: str) -> dict[str, Any]:
         result = await self.cwes_collection.find_one(
-            {
-                "id": cwe_id
-            }
+            {"id": cwe_id},
+            {"cvelist": 0, "Content_History": 0, "Taxonomy_Mappings": 0, "References": 0}
         )
         if not result:
             raise CWENotFoundException()
@@ -20,9 +19,8 @@ class CWEService:
 
     async def read_cwes_by_vulnerability_id(self, vulnerability_id: str) -> list[dict[str, Any]]:
         cursor = self.cwes_collection.find(
-            {
-                "cvelist": {"$in": [vulnerability_id]}
-            }
+            {"cvelist": {"$in": [vulnerability_id]}},
+            {"cvelist": 0, "Content_History": 0, "Taxonomy_Mappings": 0, "References": 0}
         )
         results = await cursor.to_list(length=None)
         if not results:
