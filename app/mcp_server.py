@@ -1,12 +1,19 @@
 from fastmcp import FastMCP
 
 from app.tools import (
-    CWETool,
-    ExploitTool,
-    GraphTool,
-    TIXTool,
-    VEXTool,
-    VulnerabilityTool,
+    get_cwe_tool,
+    get_cwes_by_vulnerability_tool,
+    get_exploit_tool,
+    get_exploits_by_vulnerability_tool,
+    get_package_ssc_tool,
+    get_package_status_tool,
+    get_tixs_tool,
+    get_version_ssc_tool,
+    get_version_status_tool,
+    get_vexs_tool,
+    get_vulnerabilities_by_cwe_tool,
+    get_vulnerabilities_by_exploit_tool,
+    get_vulnerability_tool,
 )
 
 mcp = FastMCP("Secure Chain MCP Tool")
@@ -14,7 +21,7 @@ mcp = FastMCP("Secure Chain MCP Tool")
 TOOL_SPECS = [
     (
         "get_package_status",
-        GraphTool.get_package_status_tool,
+        get_package_status_tool,
         """
         Use this to check if a package exists and get its status in the dependency graph.
         Input:
@@ -24,7 +31,7 @@ TOOL_SPECS = [
     ),
     (
         "get_package_ssc",
-        GraphTool.get_package_ssc_tool,
+        get_package_ssc_tool,
         """
         Use this to check the direct and transitive software supply chain of a package in the dependency graph of the overall software supply chain.
         Input:
@@ -34,7 +41,7 @@ TOOL_SPECS = [
     ),
     (
         "get_version_status",
-        GraphTool.get_version_status_tool,
+        get_version_status_tool,
         """
         Use this to get the status of a specific version of a package in the dependency graph.
         Input:
@@ -45,7 +52,7 @@ TOOL_SPECS = [
     ),
     (
         "get_version_ssc",
-        GraphTool.get_version_ssc_tool,
+        get_version_ssc_tool,
         """
         Use this to check the direct and transitive software supply chain of a version in the dependency graph of the overall software supply chain.
         Input:
@@ -56,7 +63,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerability",
-        VulnerabilityTool.get_vulnerability_tool,
+        get_vulnerability_tool,
         """
         Use this to get the information of a vulnerability by the ID.
         Input:
@@ -65,7 +72,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerabilities_by_cwe",
-        VulnerabilityTool.get_vulnerabilities_by_cwe_tool,
+        get_vulnerabilities_by_cwe_tool,
         """
         Use this to get the information of a vulnerabilities related to a CWE by the CWE-ID.
         Input:
@@ -74,7 +81,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vulnerabilities_by_exploit",
-        VulnerabilityTool.get_vulnerabilities_by_exploit_tool,
+        get_vulnerabilities_by_exploit_tool,
         """
         Use this to get the information of a vulnerabilities related to a exploit by the exploit ID.
         Input:
@@ -83,7 +90,7 @@ TOOL_SPECS = [
     ),
     (
         "get_exploit",
-        ExploitTool.get_exploit_tool,
+        get_exploit_tool,
         """
         Use this to get the information of an exploit by the ID.
         Input:
@@ -92,7 +99,7 @@ TOOL_SPECS = [
     ),
     (
         "get_exploits_by_vulnerability_id",
-        ExploitTool.get_exploits_by_vulnerability_tool,
+        get_exploits_by_vulnerability_tool,
         """
         Use this to get the information of exploits related to a vulnerability ID.
         Input:
@@ -101,7 +108,7 @@ TOOL_SPECS = [
     ),
     (
         "get_cwe",
-        CWETool.get_cwe_tool,
+        get_cwe_tool,
         """
         Use this to get the information of a CWE by the ID.
         Input:
@@ -110,7 +117,7 @@ TOOL_SPECS = [
     ),
     (
         "get_cwes_by_vulnerability_id",
-        CWETool.get_cwes_by_vulnerability_tool,
+        get_cwes_by_vulnerability_tool,
         """
         Use this to get the information of CWEs related to a vulnerability ID.
         Input:
@@ -119,7 +126,7 @@ TOOL_SPECS = [
     ),
     (
         "get_vexs",
-        VEXTool.get_vexs_tool,
+        get_vexs_tool,
         """
         Use this to get the Vulnerability Exploitability eXchanges (VEXs) for a given repository owner and name.
         Input:
@@ -130,7 +137,7 @@ TOOL_SPECS = [
     ),
     (
         "get_tixs",
-        TIXTool.get_tixs_tool,
+        get_tixs_tool,
         """
         Use this to get the Threat Intelligence eXchanges (TIXs) for a given repository owner and name.
         Input:
