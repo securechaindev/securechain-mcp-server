@@ -68,19 +68,19 @@ class DatabaseManager:
         return self.securechain_db.get_collection(settings.DB_TIXS_COLLECTION)
 
     def get_vulnerabilities_collection(self) -> AsyncCollection:
-        if self.securechain_db is None:
+        if self.vulnerabilities_db is None:
             raise RuntimeError("Database not initialized. Call initialize() first.")
-        return self.securechain_db.get_collection(settings.DB_VULNERABILITIES_COLLECTION)
+        return self.vulnerabilities_db.get_collection(settings.DB_VULNERABILITIES_COLLECTION)
 
     def get_cwes_collection(self) -> AsyncCollection:
-        if self.securechain_db is None:
+        if self.vulnerabilities_db is None:
             raise RuntimeError("Database not initialized. Call initialize() first.")
-        return self.securechain_db.get_collection(settings.DB_CWES_COLLECTION)
+        return self.vulnerabilities_db.get_collection(settings.DB_CWES_COLLECTION)
 
     def get_exploits_collection(self) -> AsyncCollection:
-        if self.securechain_db is None:
+        if self.vulnerabilities_db is None:
             raise RuntimeError("Database not initialized. Call initialize() first.")
-        return self.securechain_db.get_collection(settings.DB_EXPLOITS_COLLECTION)
+        return self.vulnerabilities_db.get_collection(settings.DB_EXPLOITS_COLLECTION)
 
     def get_neo4j_driver(self) -> AsyncDriver:
         if self.neo4j_driver is None:

@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.dependencies import get_session_pool
+from app.dependencies import get_db, get_session_pool
 from app.mcp_server import mcp
 from app.middleware import RequestContextMiddleware
 from app.settings import settings
@@ -17,8 +17,13 @@ The Secure Chain Model Context Protocol (MCP) server to give context about your 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    db = get_db()
+    await db.initialize()
+
     async with mcp_app.lifespan(app):
         yield
+
+    await db.close()
     await get_session_pool().close_all()
 
 app = FastAPI(
