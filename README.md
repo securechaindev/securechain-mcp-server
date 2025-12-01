@@ -16,7 +16,7 @@ An MCP server that provides tools for checking the status of your software suppl
 2. [Docker Compose](https://docs.docker.com/compose/) for container orchestration.
 3. It is recommended to use a GUI such as [MongoDB Compass](https://www.mongodb.com/en/products/compass).
 4. The Neo4J browser interface to visualize the graph built from the data is in [localhost:7474](http://0.0.0.0:7474/browser/) when the container is running.
-5. Python 3.13 or higher.
+5. Python 3.14 or higher.
 
 ## Use Secure Chain MCP with VSCode
 
