@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     GRAPH_DB_PASSWORD: str = Field("neoSecureChain", alias="GRAPH_DB_PASSWORD")
     BACKEND_URL: str = Field("http://securechain-gateway:8000", alias="BACKEND_URL")
     REQUEST_TIMEOUT: int = Field(60, alias="REQUEST_TIMEOUT")
+    DOCS_URL: str = Field("/docs", alias="DOCS_URL")
 
     # Database Configuration
     DB_MIN_POOL_SIZE: int = 10
