@@ -4,6 +4,7 @@ from app.tools import (
     CWETool,
     ExploitTool,
     GraphTool,
+    TIXTool,
     VEXTool,
     VulnerabilityTool,
 )
@@ -120,7 +121,18 @@ TOOL_SPECS = [
         "get_vexs",
         VEXTool.get_vexs_tool,
         """
-        Use this to get the VEXs for a given repository owner and name.
+        Use this to get the Vulnerability Exploitability eXchanges (VEXs) for a given repository owner and name.
+        Input:
+            owner: The owner of the repository.
+            name: The name of the repository.
+            sbom_name: The name of the SBOM file.
+        """
+    ),
+    (
+        "get_tixs",
+        TIXTool.get_tixs_tool,
+        """
+        Use this to get the Threat Intelligence eXchanges (TIXs) for a given repository owner and name.
         Input:
             owner: The owner of the repository.
             name: The name of the repository.
