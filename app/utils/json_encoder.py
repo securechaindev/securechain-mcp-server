@@ -16,5 +16,5 @@ class JSONEncoder:
             return str(o)
         raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
 
-    def encode(self, raw_response: dict[str, Any]) -> dict[str, Any]:
+    def encode(self, raw_response: dict[str, Any] | list[dict[str, Any]]) -> dict[str, Any]:
         return loads(dumps(raw_response, default=self.default))
