@@ -12,10 +12,12 @@ class VEXTIXLogic:
         url = f"{settings.BACKEND_URL}/vexgen/vex_tix/generate"
         body = {"owner": owner, "name": name}
 
-        async with session_manager.session.post(url, json=body, headers=headers) as resp:
-            if resp.status == 422:
-                text = await resp.text()
-                raise RuntimeError(f"422 validation error: {text}")
-            if resp.status == 404:
-                raise PackageNotFoundException()
-            resp.raise_for_status()
+        if session_manager.session is not None:
+            async with session_manager.session.post(url, json=body, headers=headers) as resp:
+                if resp.status == 422:
+                    text = await resp.text()
+                    raise RuntimeError(f"422 validation error: {text}")
+                if resp.status == 404:
+                    raise PackageNotFoundException()
+                resp.raise_for_status()
+        return {}
