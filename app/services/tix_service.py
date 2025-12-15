@@ -8,7 +8,7 @@ class TIXService:
     def __init__(self, db: DatabaseManager):
         self.tixs_collection = db.get_tixs_collection()
 
-    async def read_tixs_by_owner_name(self, owner: str, name: str, sbom_name: str) -> dict[str, Any]:
+    async def read_tixs_by_owner_name(self, owner: str, name: str, sbom_name: str) -> list[dict[str, Any]]:
         cursor = self.tixs_collection.find(
             {
                 "owner": owner,

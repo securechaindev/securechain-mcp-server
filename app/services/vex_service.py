@@ -8,7 +8,7 @@ class VEXService:
     def __init__(self, db: DatabaseManager):
         self.vexs_collection = db.get_vexs_collection()
 
-    async def read_vexs_by_owner_name(self, owner: str, name: str, sbom_name: str) -> dict[str, Any]:
+    async def read_vexs_by_owner_name(self, owner: str, name: str, sbom_name: str) -> list[dict[str, Any]]:
         cursor = self.vexs_collection.find(
             {
                 "owner": owner,
