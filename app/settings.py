@@ -1,11 +1,11 @@
 from functools import lru_cache
 
-from pydantic import ConfigDict, Field
-from pydantic_settings import BaseSettings
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = ConfigDict(env_file=".env", extra="ignore", case_sensitive=False)
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=False)
 
     GRAPH_DB_URI: str = Field("bolt://neo4j:7687", alias="GRAPH_DB_URI")
     VULN_DB_URI: str = Field("mongodb://mongoSecureChain:mongoSecureChain@mongo:27017/admin", alias="VULN_DB_URI")
