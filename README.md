@@ -1,5 +1,9 @@
 # Secure Chain MCP Server
 
+[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Lint & Test](https://github.com/securechaindev/securechain-mcp-server/actions/workflows/lint-test.yml/badge.svg)]()
+[![GHCR](https://img.shields.io/badge/GHCR-securechain--mcp-blue?logo=docker)](https://github.com/orgs/securechaindev/packages/container/package/securechain-mcp)
+
 An MCP server that provides tools for checking the status of your software supply chain within the context of Secure Chain.
 
 ### Key Features
@@ -122,7 +126,8 @@ Inside the folder `.vscode/` add the file `mcp.json` with this template:
 And then start the MCP server and begin use it with Copilot for example.
 
 ## Python Environment
-The project uses Python 3.14 and **uv** as the package manager for faster and more reliable dependency management.
+
+The project uses Python 3.14 and [uv](https://github.com/astral-sh/uv) as the package manager for faster and more reliable dependency management.
 
 ### Setting up the development environment with uv
 
@@ -143,6 +148,7 @@ The project uses Python 3.14 and **uv** as the package manager for faster and mo
    ```
 
 ## Code Quality
+
 ```bash
 # Install linter
 uv sync --extra dev
@@ -156,12 +162,7 @@ uv run ruff format app/
 
 ## Contributing
 
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
-### Future Works
-
-New future works that can be developed:
-- Implement templates to return the information in a more semantic/textual way.
+Pull requests are welcome! To contribute follow this [guidelines](https://securechaindev.github.io/contributing.html).
 
 ## License
 
