@@ -148,10 +148,10 @@ The project uses Python 3.14 and **uv** as the package manager for faster and mo
 uv sync --extra dev
 
 # Linting
-uv ruff check app/
+uv run ruff check app/
 
 # Formatting
-uv ruff format app/
+uv run ruff format app/
 ```
 
 ## Contributing
