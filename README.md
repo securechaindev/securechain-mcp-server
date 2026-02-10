@@ -125,7 +125,7 @@ Inside the folder `.vscode/` add the file `mcp.json` with this template:
 
 And then start the MCP server and begin use it with Copilot for example.
 
-## Python Environment
+## Development Environment
 
 The project uses Python 3.14 and [uv](https://github.com/astral-sh/uv) as the package manager for faster and more reliable dependency management.
 
