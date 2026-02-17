@@ -26,7 +26,7 @@ An MCP server that provides tools for checking the status of your software suppl
 
 ### 1. Register on Secure Chain
 
-Go to [Secure Chain](https://securechain.dev/) official lading page, and register yourself as a user.
+Go to [Secure Chain](https://securechain.dev/) official lading page, and register yourself as a user, then get an API Key from the top right key button.
 
 ### 2. Add mcp configuration
 
@@ -34,12 +34,11 @@ Finally, inside the folder `.vscode` add the file `mcp.json` with the next confi
 ```json
 {
   "servers": {
-    "Secure Chain MCP Server": {
+    "Secure Chain": {
       "type": "http",
       "url": "https://mcp.securechain.dev/mcp",
       "headers": {
-        "X-Auth-Email": "your_email",
-        "X-Auth-Pass": "your_super_secret_password"
+        "X-API-Key": "your-api-key-here"
       }
     }
   }
@@ -104,6 +103,8 @@ Go [here](http://localhost:8000/docs#/Secure%20Chain%20Auth%20-%20User/signup_si
 }
 ```
 
+And then go [here](http://localhost:8000/docs#/Secure%20Chain%20Auth%20-%20API%20Keys/create_api_key_api_keys_create_post) and get an API Key.
+
 ### 7. Configure the MCP with VSCode
 
 Inside the folder `.vscode/` add the file `mcp.json` with this template:
@@ -111,12 +112,11 @@ Inside the folder `.vscode/` add the file `mcp.json` with this template:
 ```json
 {
   "servers": {
-    "Secure Chain MCP Server": {
+    "Secure Chain": {
       "type": "http",
       "url": "http://localhost:8005/mcp",
       "headers": {
-        "X-Auth-Email": "mcp-bot@example.com",
-        "X-Auth-Pass": "supersecre3T*"
+        "X-API-Key": "your-api-key-here"
       }
     }
   }
